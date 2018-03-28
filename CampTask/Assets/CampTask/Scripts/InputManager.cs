@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour {
 		return _InputManager;
 	} 
 	// 基本action 下位 54bit
-	enum PersonAction{
+	public enum PersonAction{
 		Run,
 
 		Walk,
@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour {
 
 
 	// 上位10bit 
-	enum Direction {
+	public enum Direction {
 		Right,
 		Left,
 		Fowford,
@@ -39,11 +39,18 @@ public class InputManager : MonoBehaviour {
 
 	//m_personAction = 1 << Run;
 	UInt64     m_personAction;
+	UInt32     m_personActionIndex;
 
 	UInt64 GetPersonAction(){ return m_personAction; }
 
 	//PlayerInfo GetPersonnfo(){ return ; }
+	UInt32 GetAction()
+	{
+		UInt32 ret = 0;
+		//if()
 
+		return ret;
+	}
 
 
 	//
@@ -63,22 +70,22 @@ public class InputManager : MonoBehaviour {
 		if(Input.GetKey(KeyCode.LeftShift))
 		{
 
-			m_personAction |= 1 << (int)PersonAction.Run;
+			m_personAction = (int)PersonAction.Run;
 			if( Input.GetKey(KeyCode.UpArrow))
 			{
-				m_personAction = m_personAction | 1 << ( (int)Direction.Fowford + 54);
+				m_personAction = m_personAction | ( (int)Direction.Fowford << 54 );
 			}
 			if( Input.GetKey(KeyCode.RightArrow) )
 			{
-				m_personAction = m_personAction | 1 << ( (int)Direction.Right + 54);
+				m_personAction = m_personAction | ( (int)Direction.Right << 54);
 			}
 			if(Input.GetKey(KeyCode.LeftArrow))
 			{
-				m_personAction = m_personAction | 1 << ( (int)Direction.Left + 54);
+				m_personAction = m_personAction | ( (int)Direction.Left << 54);
 			}
 			if(Input.GetKey(KeyCode.DownArrow))
 			{
-				m_personAction = m_personAction | 1 << ( (int)Direction.Back + 54);
+				m_personAction = m_personAction | ( (int)Direction.Back << 54);
 			}	
 
 		}
@@ -87,33 +94,33 @@ public class InputManager : MonoBehaviour {
 			
 			if( Input.GetKey(KeyCode.UpArrow))
 			{
-				m_personAction |= 1 << (int)PersonAction.Walk;
-				m_personAction = m_personAction | 1 << ( (int)Direction.Fowford + 54);
+				m_personAction = (int)PersonAction.Walk;
+				m_personAction = m_personAction | ( (int)Direction.Fowford << 54);
 			}
 			if( Input.GetKey(KeyCode.RightArrow) )
 			{
-				m_personAction |= 1 << (int)PersonAction.Walk;
-				m_personAction = m_personAction | 1 << ( (int)Direction.Right + 54);
+				m_personAction = (int)PersonAction.Walk;
+				m_personAction = m_personAction |  ( (int)Direction.Right << 54);
 			}
 			if(Input.GetKey(KeyCode.LeftArrow))
 			{
-				m_personAction |= 1 << (int)PersonAction.Walk;
-				m_personAction = m_personAction | 1 << ( (int)Direction.Left + 54);
+				m_personAction = (int)PersonAction.Walk;
+				m_personAction = m_personAction |  ( (int)Direction.Left << 54);
 			}
 			if(Input.GetKey(KeyCode.DownArrow))
 			{
-				m_personAction |= 1 << (int)PersonAction.Walk;
-				m_personAction = m_personAction | 1 << ( (int)Direction.Back + 54);
+				m_personAction = (int)PersonAction.Walk;
+				m_personAction = m_personAction |  ( (int)Direction.Back << 54);
 			}	
 		}
 		
 		if( Input.GetKeyDown(KeyCode.C))
 		{
-			m_personAction |= 1 << (int)PersonAction.Squat;
+			m_personAction = (int)PersonAction.Squat;
 		}
 		if( Input.GetKeyDown(KeyCode.Z) )
 		{
-			m_personAction |= 1<< (int)PersonAction.Lie;
+			m_personAction = (int)PersonAction.Lie;
 		}
 	}
 }
