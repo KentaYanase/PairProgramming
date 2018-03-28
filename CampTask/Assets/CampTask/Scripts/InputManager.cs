@@ -7,6 +7,11 @@ public class InputManager : MonoBehaviour {
 
 	int m_upperbit = 54;
 
+	static InputManager _InputManager =null;
+
+	public static InputManager GetInstance(){
+		return _InputManager;
+	} 
 	// 基本action 下位 54bit
 	enum PersonAction{
 		Run,
@@ -41,7 +46,11 @@ public class InputManager : MonoBehaviour {
 
 
 
-
+	//
+	void Awake()
+	{
+		_InputManager = this;
+	}
 
 	// Use this for initialization
 	void Start () {
