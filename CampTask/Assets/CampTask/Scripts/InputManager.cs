@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour {
 	UInt64     m_personAction;
 	UInt32     m_personActionIndex;
 
-	UInt64 GetPersonAction(){ return m_personAction; }
+	public UInt64 GetPersonAction(){ return m_personAction; }
 
 	//PlayerInfo GetPersonnfo(){ return ; }
 	UInt32 GetAction()
